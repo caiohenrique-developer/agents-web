@@ -1,18 +1,14 @@
-import { Wand } from "lucide-react";
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CreateRoom } from "./pages/create-room";
+import { RoomDetail } from "./pages/room-detail";
 
 export function App() {
 	return (
-		<>
-			<h1>Hello World</h1>
-
-			<Button>Example button</Button>
-
-			<div>
-				<Button variant="destructive" size="icon">
-					<Wand />
-				</Button>
-			</div>
-		</>
+		<BrowserRouter>
+			<Routes>
+				<Route index element={<CreateRoom />} />
+				<Route path="/room-detail" element={<RoomDetail />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
