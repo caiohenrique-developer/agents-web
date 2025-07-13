@@ -26,7 +26,7 @@ export function RoomDetail() {
 								Voltar ao Início
 							</Button>
 						</Link>
-						<Link to={`/room/${roomID}/audio`}>
+						<Link to={`/room-detail/${roomID}/audio`}>
 							<Button
 								className="flex items-center gap-2 cursor-pointer"
 								variant="secondary"
