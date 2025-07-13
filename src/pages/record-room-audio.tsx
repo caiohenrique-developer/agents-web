@@ -26,11 +26,8 @@ export function RecordRoomAudio() {
 		formData.append("file", audio, "audio.webm");
 
 		const response = await fetch(
-			`/http://localhost:3333/rooms/${roomID}/audio`,
-			{
-				method: "POST",
-				body: formData,
-			},
+			`http://localhost:3333/rooms/${roomID}/audio`,
+			{ method: "POST", body: formData },
 		);
 
 		const result = await response.json();
@@ -71,7 +68,7 @@ export function RecordRoomAudio() {
 
 		recorder.current.onstop = () => {
 			console.log("Recording paused/stopped");
-			// setIsRecording(false);
+			setIsRecording(false);
 		};
 
 		recorder.current.start();
