@@ -15,10 +15,10 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { useCreateQuestion } from "@/http/use-create-question";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-// import { useCreateQuestion } from '@/http/use-create-question'
 
 // Esquema de validação no mesmo arquivo conforme solicitado
 const createQuestionSchema = z.object({
@@ -36,7 +36,7 @@ interface QuestionFormProps {
 }
 
 export function QuestionForm({ roomId }: QuestionFormProps) {
-	// const { mutateAsync: createQuestion } = useCreateQuestion(roomId)
+	const { mutateAsync: createQuestion } = useCreateQuestion(roomId);
 
 	const form = useForm<CreateQuestionFormData>({
 		resolver: zodResolver(createQuestionSchema),
@@ -45,10 +45,8 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
 		},
 	});
 
-	async function handleCreateQuestion(data: CreateQuestionFormData) {
-		console.log("Pergunta enviada:", data);
-
-		// await createQuestion(data)
+	async function handleCreateQuestion({ question }: CreateQuestionFormData) {
+		await createQuestion({ question });
 	}
 
 	const { isSubmitting } = form.formState;
