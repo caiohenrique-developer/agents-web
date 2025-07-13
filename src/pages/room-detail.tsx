@@ -1,8 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 
 import { QuestionForm } from "@/components/question-form";
-import { QuestionItem } from "@/components/question-item";
-// import { QuestionList } from "@/components/question-list";
+import { QuestionList } from "@/components/question-list";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Radio } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -49,17 +48,7 @@ export function RoomDetail() {
 					<QuestionForm roomId={roomID} />
 				</div>
 
-				{/* <QuestionList roomId={roomID} /> */}
-
-				<QuestionItem
-					question={{
-						id: "string",
-						question: "string",
-						createdAt: "string",
-						answer: "string",
-						isGeneratingAnswer: true,
-					}}
-				/>
+				<QuestionList roomId={roomID} />
 			</div>
 		</div>
 	);
