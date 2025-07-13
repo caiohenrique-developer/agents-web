@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from "./ui/card";
 
+import { useCreateRoom } from "@/http/use-create-room";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
@@ -22,14 +23,20 @@ const createRoomSchema = z.object({
 type CreateRoomFormData = z.infer<typeof createRoomSchema>;
 
 export function CreateRoomForm() {
+	const { mutateAsync: createRoom } = useCreateRoom();
+
 	const createRoomForm = useForm<CreateRoomFormData>({
 		resolver: zodResolver(createRoomSchema),
 		defaultValues: { name: "", description: "" },
 	});
 
-	const handleCreateRoom = (data: CreateRoomFormData) => {
-		console.log("Form submitted with data:", data);
-		// Aqui você pode adicionar a lógica para enviar os dados do formulário
+	const handleCreateRoom = async ({
+		name,
+		description,
+	}: CreateRoomFormData) => {
+		await createRoom({ name, description });
+
+		createRoomForm.reset();
 	};
 
 	return (
