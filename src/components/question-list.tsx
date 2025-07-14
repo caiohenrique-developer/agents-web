@@ -8,16 +8,14 @@ export function QuestionList({ roomId }: QuestionListProps) {
 
 	return (
 		<div className="space-y-6">
-			{data?.map((question) => (
-				<div key={question.id}>
-					<div className="flex items-center justify-between">
-						<h2 className="text-2xl font-semibold text-foreground">
-							Perguntas & Respostas
-						</h2>
-					</div>
+			<div className="flex items-center justify-between">
+				<h2 className="text-2xl font-semibold text-foreground">
+					Perguntas & Respostas
+				</h2>
+			</div>
 
-					<QuestionItem question={question} />
-				</div>
+			{data?.map((question) => (
+				<QuestionItem key={question.id} question={question} />
 			))}
 		</div>
 	);
